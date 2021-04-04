@@ -30,3 +30,18 @@ function addColor(){
     })
 }
 
+//Po kliknuti na farbu sa skopiruje hex farby #------ do clipboard
+let divs = document.querySelectorAll('.box');
+for (let div of divs) {
+    div.onclick = function () {
+        document.execCommand('copy');
+    }
+
+div.addEventListener('copy',function (event) {
+    event.preventDefault();
+    if (event.clipboardData) {
+        event.clipboardData.setData('text/plain', div.textContent);
+        console.log(event.clipboardData.getData('text'))
+    }
+});
+}
